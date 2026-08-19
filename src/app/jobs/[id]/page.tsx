@@ -1,28 +1,28 @@
-import { getJobBySlug } from "@/lib/data";
+import { getJobById } from "@/lib/data";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/animations/MotionWrapper";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Briefcase, Calendar, ExternalLink, MapPin } from "lucide-react";
+import { ArrowLeft, Briefcase, Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
 import type { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const params = await props.params;
-  const job = await getJobBySlug(params.slug);
+  const job = await getJobById(params.id);
   return {
     title: job ? `${job.title} | ListingHub Jobs` : "Job Not Found",
-    description: job?.shortDesc || "View job details.",
+    description: job?.description?.slice(0, 150) || "View job details.",
   };
 }
 
 export default async function JobDetailPage(props: Props) {
   const params = await props.params;
-  const job = await getJobBySlug(params.slug);
+  const job = await getJobById(params.id);
 
   if (!job) {
     notFound();
@@ -47,27 +47,29 @@ export default async function JobDetailPage(props: Props) {
               </div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{job.title}</h1>
-                <div className="flex items-center gap-3 text-sm text-slate-400">
+                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
                   <Badge variant="secondary" className="bg-slate-800 text-slate-300">
-                    {job.category}
+                    {job.content_status}
                   </Badge>
+                  {job.open_source_viable && (
+                    <Badge variant="secondary" className="bg-emerald-900/30 text-emerald-400 border-emerald-800">
+                      Open Source Viable
+                    </Badge>
+                  )}
                   <span className="flex items-center gap-1">
                     <MapPin className="w-4 h-4" /> Remote
                   </span>
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" /> Posted {new Date(job.createdAt).toLocaleDateString()}
+                    <Calendar className="w-4 h-4" /> Posted {new Date(job.created_at).toLocaleDateString()}
                   </span>
                 </div>
               </div>
             </div>
             
-            <p className="text-xl text-slate-300 font-medium mb-8">
-              {job.shortDesc}
-            </p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 mt-8">
               <h2 className="text-xl font-semibold mb-6 text-white">Job Description</h2>
               <div className="prose prose-invert max-w-none prose-p:text-slate-300 whitespace-pre-wrap">
                 {job.description}
@@ -87,23 +89,11 @@ export default async function JobDetailPage(props: Props) {
                 <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg h-12 mb-3">
                   Submit Application
                 </Button>
-                {job.source && (
-                  <Button variant="outline" className="w-full border-slate-700 hover:bg-slate-800 text-slate-200 rounded-lg h-12">
-                    View on {job.source} <ExternalLink className="w-4 h-4 ml-2" />
-                  </Button>
+                {job.campaign_id && (
+                  <p className="text-xs text-center text-slate-500 mt-4">
+                    Campaign: {job.campaign_id}
+                  </p>
                 )}
-              </div>
-
-              {/* Skills required */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
-                <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Required Skills</h3>
-                <div className="flex flex-wrap gap-2">
-                  {job.skills.map((skill) => (
-                    <Badge key={skill} variant="secondary" className="bg-slate-800 text-slate-300 hover:bg-slate-700">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
               </div>
             </div>
           </FadeIn>

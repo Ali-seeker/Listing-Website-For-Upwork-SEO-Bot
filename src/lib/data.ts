@@ -25,9 +25,9 @@ export async function getBlogBySlug(slug: string) {
 }
 
 export async function getJobs() {
-  return prisma.job.findMany({ orderBy: { createdAt: 'desc' } });
+  return prisma.job.findMany({ orderBy: { created_at: 'desc' } });
 }
 
-export async function getJobBySlug(slug: string) {
-  return prisma.job.findUnique({ where: { slug } });
+export async function getJobById(id: string) {
+  return prisma.job.findUnique({ where: { id } });
 }

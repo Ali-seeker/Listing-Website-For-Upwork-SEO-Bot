@@ -127,27 +127,25 @@ export function BlogCard({ blog }: { blog: Blog }) {
 interface Job {
   id: string;
   title: string;
-  slug: string;
-  category: string;
-  skills: string[];
-  shortDesc: string;
-  source: string | null;
-  createdAt: Date;
+  description: string;
+  campaign_id: string | null;
+  open_source_viable: boolean;
+  content_status: string;
+  created_at: Date;
 }
 
 export function JobCard({ job }: { job: Job }) {
   return (
-    <Link href={`/jobs/${job.slug}`} className="group block h-full">
-      <Card className="h-full bg-slate-900 border-slate-800 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-emerald-500/50 group-hover:shadow-[0_8px_30px_rgb(16,185,129,0.12)]">
+    <Link href={`/jobs/${job.id}`} className="group block h-full">
+      <Card className="h-full flex flex-col bg-slate-900 border-slate-800 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-emerald-500/50 group-hover:shadow-[0_8px_30px_rgb(16,185,129,0.12)]">
         <CardHeader>
           <div className="flex justify-between items-start mb-2">
             <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
               <Briefcase className="w-5 h-5" />
             </div>
-            {job.source && (
+            {job.campaign_id && (
               <Badge variant="outline" className="text-xs text-slate-400 border-slate-700 bg-slate-800/50">
-                {job.source}
-                <ExternalLink className="w-3 h-3 ml-1 inline" />
+                {job.campaign_id}
               </Badge>
             )}
           </div>
@@ -155,25 +153,15 @@ export function JobCard({ job }: { job: Job }) {
             {job.title}
           </CardTitle>
           <div className="text-xs text-slate-500 flex items-center gap-2 mt-2">
-             <span>{job.category}</span>
+             <span>{job.content_status}</span>
              <span>•</span>
-             <span>{new Date(job.createdAt).toLocaleDateString()}</span>
+             <span>{new Date(job.created_at).toLocaleDateString()}</span>
           </div>
         </CardHeader>
-        <CardContent>
-          <CardDescription className="text-slate-400 line-clamp-2 mb-4">
-            {job.shortDesc}
+        <CardContent className="flex-grow">
+          <CardDescription className="text-slate-400 line-clamp-3 mb-4">
+            {job.description.length > 120 ? `${job.description.slice(0, 120)}...` : job.description}
           </CardDescription>
-          <div className="flex flex-wrap gap-2">
-            {job.skills.slice(0, 3).map((skill) => (
-              <Badge key={skill} variant="secondary" className="bg-slate-800 text-slate-300 text-xs px-2 py-0.5">
-                {skill}
-              </Badge>
-            ))}
-            {job.skills.length > 3 && (
-              <span className="text-xs text-slate-500 flex items-center">+{job.skills.length - 3} more</span>
-            )}
-          </div>
         </CardContent>
         <CardFooter className="mt-auto pt-4 border-t border-slate-800/50 flex items-center text-sm font-medium text-emerald-400">
           View Details
