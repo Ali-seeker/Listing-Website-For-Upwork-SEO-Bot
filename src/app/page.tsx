@@ -42,13 +42,13 @@ export default async function HomePage() {
           
           <FadeIn delay={0.3}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8 h-12 w-full sm:w-auto">
+              <Link href="/products" className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8 h-12 w-full sm:w-auto font-medium transition-colors shadow-sm">
                 Explore Products
-              </Button>
-              <Button size="lg" variant="outline" className="border-slate-700 hover:bg-slate-800 text-slate-200 rounded-full px-8 h-12 w-full sm:w-auto">
+              </Link>
+              <Link href="/jobs" className="inline-flex items-center justify-center border border-slate-700 hover:bg-slate-800 text-slate-200 rounded-full px-8 h-12 w-full sm:w-auto font-medium transition-colors">
                 <Search className="w-4 h-4 mr-2" />
                 Find Jobs
-              </Button>
+              </Link>
             </div>
           </FadeIn>
         </div>

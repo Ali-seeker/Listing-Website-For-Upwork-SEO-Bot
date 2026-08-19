@@ -64,10 +64,10 @@ export function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 group">
+            <Link href="/products" className="inline-flex h-9 items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 text-sm font-medium group transition-colors">
               Explore Solutions
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -101,9 +101,9 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-4 px-3">
-              <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-full">
+              <Link href="/products" onClick={() => setMobileMenuOpen(false)} className="inline-flex h-9 w-full items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-full text-sm font-medium transition-colors">
                 Explore Solutions
-              </Button>
+              </Link>
             </div>
           </div>
         </div>
