@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  category    String   @default("General")
+  shortDesc   String   @default("")
+  description String
+  source      String?
+  budget      Float?
+  skills      String[]
+  client      String?
+  postedAt    DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Product {
+  id             String   @id @default(uuid())
+  name           String
+  slug           String   @unique
+  category       String   @default("Software")
+  shortDesc      String   @default("")
+  description    String
+  problem        String   @default("")
+  solution       String   @default("")
+  valueProp      String   @default("")
+  targetCustomer String   @default("")
+  features       String[]
+  technologies   String[]
+  status         String   @default("draft")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Service {
+  id           String   @id @default(uuid())
+  name         String
+  slug         String   @unique
+  category     String   @default("Consulting")
+  shortDesc    String   @default("")
+  description  String
+  problem      String   @default("")
+  benefits     String[]
+  deliverables String[]
+  process      String[]
+  status       String   @default("draft")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Blog {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  category    String   @default("News")
+  excerpt     String   @default("")
+  content     String
+  author      String   @default("Admin")
+  status      String   @default("draft")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
