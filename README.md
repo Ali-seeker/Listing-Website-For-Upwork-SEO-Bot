@@ -76,3 +76,9 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 The website is built entirely decoupled from Module 1. 
 When the 15-minute Cron Job is implemented in the future, it will read data from the Module 1 database and directly `UPSERT` records into the Module 2 `listing_website_db` PostgreSQL database using standard SQL or an external script. 
 Because this Next.js app reads dynamically from its own database via Server Components, any updates made by the Cron job will be immediately reflected on the frontend without requiring any changes to this Next.js application codebase.
+
+## Database Synchronization
+This project includes a server-side cron job to synchronize data from Module 1 to Module 2.
+- **Run manually:** `npm run sync`
+- **Run cron job:** `npm run cron`
+

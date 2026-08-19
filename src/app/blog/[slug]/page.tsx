@@ -64,9 +64,10 @@ export default async function BlogDetailPage(props: Props) {
             {blog.excerpt}
           </p>
           
-          <div className="whitespace-pre-wrap leading-relaxed">
-            {blog.content}
-          </div>
+          <div 
+            className="whitespace-pre-wrap leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+          />
         </div>
 
         <div className="mt-16 pt-8 border-t border-slate-800 flex items-center justify-between">
