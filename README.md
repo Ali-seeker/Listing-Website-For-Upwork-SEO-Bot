@@ -68,17 +68,27 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - `/blog` & `/blog/[slug]` - Blog Listing & Detail
 - `/jobs` & `/jobs/[slug]` - Jobs Listing & Detail
 
-## Future Cron Synchronization (Module 1 -> Module 2)
+## Database Synchronization (Module 1 -> Module 2)
 
-**Status:** Not Implemented Yet (As requested in Phase 24).
+This project includes a server-side data synchronization system to automatically pull data from **Module 1 (Source Database)** into **Module 2 (Listing Website Database)**. 
 
-**Future Architecture:**
-The website is built entirely decoupled from Module 1. 
-When the 15-minute Cron Job is implemented in the future, it will read data from the Module 1 database and directly `UPSERT` records into the Module 2 `listing_website_db` PostgreSQL database using standard SQL or an external script. 
-Because this Next.js app reads dynamically from its own database via Server Components, any updates made by the Cron job will be immediately reflected on the frontend without requiring any changes to this Next.js application codebase.
+The system uses an incremental watermark approach, ensuring it only fetches new or updated records (via `created_at` or `updatedAt` timestamps) instead of copying the entire database, preventing performance issues. It also includes an Audit Log feature (`SyncAuditLog`) that saves success/error counts and limits data duplication via Prisma `upsert` queries.
 
-## Database Synchronization
-This project includes a server-side cron job to synchronize data from Module 1 to Module 2.
-- **Run manually:** `npm run sync`
-- **Run cron job:** `npm run cron`
+### Setup Synchronization
+1. Copy `.env.example` to `.env` if not already done.
+2. Update the `MODULE_1_DATABASE_URL` in `.env` to point to the Module 1 database.
+```env
+MODULE_1_DATABASE_URL="postgresql://username:password@localhost:5432/automation_UTP2"
+```
 
+### Commands
+- **Run a single manual sync:**  
+  *Immediately fetches and syncs all pending records. Good for testing.*
+  ```bash
+  npm run sync
+  ```
+- **Start the automated Cron Job worker:**  
+  *Runs continuously in the background and executes the sync every 15 minutes.*
+  ```bash
+  npm run cron
+  ```
