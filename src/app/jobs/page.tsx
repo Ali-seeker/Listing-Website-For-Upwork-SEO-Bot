@@ -23,7 +23,7 @@ export default async function JobsPage(props: Props) {
       <FadeIn>
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Opportunities</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground to-muted-foreground mb-4">Opportunities</h1>
             <p className="text-muted-foreground text-lg">
               Find your next role. Browse opportunities across engineering, design, marketing, and more.
             </p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function HeroSearch() {
@@ -18,22 +18,23 @@ export function HeroSearch() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 w-full">
+    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3 w-full group/search">
       <div className="relative flex-grow">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within/search:text-primary transition-colors" />
         <input 
           type="text"
           value={term}
           onChange={(e) => setTerm(e.target.value)}
           placeholder="Search for products, services, or jobs..." 
-          className="w-full bg-background/50 border border-border rounded-lg pl-10 pr-4 h-12 text-foreground focus:outline-none focus:border-primary/50 transition-colors backdrop-blur-sm"
+          className="w-full bg-background/60 border border-border/50 rounded-xl pl-12 pr-4 h-14 text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all backdrop-blur-md shadow-inner"
         />
       </div>
       <button 
         type="submit"
-        className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg px-8 h-12 w-full sm:w-auto font-medium transition-all duration-300 whitespace-nowrap shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:shadow-[0_0_25px_rgba(79,70,229,0.6)] hover:-translate-y-0.5"
+        className="group inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-8 h-14 w-full sm:w-auto font-semibold text-lg transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.2)] hover:shadow-[0_0_30px_rgba(79,70,229,0.5)] hover:-translate-y-0.5"
       >
         Search
+        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
       </button>
     </form>
   );

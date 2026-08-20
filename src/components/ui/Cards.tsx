@@ -15,13 +15,13 @@ interface Product {
 export function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/products/${product.slug}`} className="group block h-full">
-      <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+      <Card className="h-full bg-card border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 dark:shadow-none">
         <CardHeader className="pb-3">
           <div className="flex justify-between items-start mb-2">
              <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
               <Package className="w-5 h-5" />
             </div>
-            <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-normal">
+            <Badge variant="secondary" className="bg-primary/10 text-primary border border-primary/20 font-medium">
               {product.category}
             </Badge>
           </div>
@@ -55,13 +55,13 @@ interface Service {
 export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link href={`/services/${service.slug}`} className="group block h-full">
-      <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+      <Card className="h-full bg-card border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 dark:shadow-none">
         <CardHeader className="pb-3">
            <div className="flex justify-between items-start mb-2">
              <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
               <Settings className="w-5 h-5" />
             </div>
-            <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-normal">
+            <Badge variant="secondary" className="bg-primary/10 text-primary border border-primary/20 font-medium">
               {service.category}
             </Badge>
           </div>
@@ -96,10 +96,10 @@ interface Blog {
 export function BlogCard({ blog }: { blog: Blog }) {
   return (
     <Link href={`/blog/${blog.slug}`} className="group block h-full">
-      <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+      <Card className="h-full bg-card border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 dark:shadow-none">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between mb-3">
-            <Badge variant="outline" className="text-muted-foreground font-normal border-border">
+            <Badge variant="secondary" className="bg-primary/10 text-primary border border-primary/20 font-medium">
               {blog.category}
             </Badge>
             <div className="flex items-center text-xs text-muted-foreground">
@@ -137,16 +137,25 @@ interface Job {
 }
 
 export function JobCard({ job }: { job: Job }) {
+  const getStatusColor = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'completed': return 'bg-green-500/10 text-green-600 border border-green-500/20';
+      case 'error': return 'bg-red-500/10 text-red-600 border border-red-500/20';
+      case 'pending': return 'bg-amber-500/10 text-amber-600 border border-amber-500/20';
+      default: return 'bg-secondary text-secondary-foreground border border-border';
+    }
+  };
+
   return (
     <Link href={`/jobs/${job.id}`} className="group block h-full">
-      <Card className="h-full flex flex-col bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+      <Card className="h-full flex flex-col bg-card border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 dark:shadow-none">
         <CardHeader className="pb-3">
           <div className="flex justify-between items-start mb-3">
             <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
               <Briefcase className="w-5 h-5" />
             </div>
             {job.campaign_id && (
-              <Badge variant="outline" className="text-xs font-normal text-muted-foreground border-border bg-muted/50">
+              <Badge variant="secondary" className="text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                 {job.campaign_id}
               </Badge>
             )}
@@ -155,7 +164,9 @@ export function JobCard({ job }: { job: Job }) {
             {job.title}
           </CardTitle>
           <div className="text-xs text-muted-foreground flex items-center gap-2 mt-2">
-             <span>{job.content_status}</span>
+             <Badge variant="secondary" className={`px-1.5 py-0 text-[10px] uppercase tracking-wider ${getStatusColor(job.content_status)}`}>
+               {job.content_status}
+             </Badge>
              <span>•</span>
              <span>{new Date(job.created_at).toLocaleDateString()}</span>
           </div>

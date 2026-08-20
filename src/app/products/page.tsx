@@ -24,7 +24,7 @@ export default async function ProductsPage(props: Props) {
       <FadeIn>
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Products</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground to-muted-foreground mb-4">Our Products</h1>
             <p className="text-muted-foreground text-lg">
               Explore our collection of innovative software solutions designed to solve complex problems and boost your team's productivity.
             </p>

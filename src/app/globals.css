@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-geist-sans);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -43,7 +43,7 @@
 
 /* Enforce Premium Theme variables natively */
 :root {
-  --background: #ffffff; 
+  --background: #fafafa; /* zinc-50 */
   --foreground: #09090b; 
   --card: #ffffff; 
   --card-foreground: #09090b;

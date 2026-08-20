@@ -38,7 +38,7 @@ export default async function BlogDetailPage(props: Props) {
       <FadeIn delay={0.1}>
         <header className="mb-12 text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <span className="px-3 py-1 bg-muted text-foreground text-xs font-semibold uppercase tracking-wider rounded-full border border-border">
+            <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider rounded-full border border-primary/20">
               {blog.category}
             </span>
           </div>

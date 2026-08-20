@@ -25,7 +25,7 @@ export default async function BlogPage(props: Props) {
       <FadeIn>
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Insights & News</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground to-muted-foreground mb-4">Insights & News</h1>
             <p className="text-muted-foreground text-lg">
               Stay updated with the latest articles, guides, and stories from our team of industry experts.
             </p>
@@ -70,6 +70,7 @@ export default async function BlogPage(props: Props) {
                       src="/images/blog-featured.jpg" 
                       alt="Featured Tech Insights" 
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover transition-transform duration-700 hover:scale-105"
                       priority
                     />

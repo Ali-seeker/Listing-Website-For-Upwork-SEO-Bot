@@ -47,7 +47,7 @@ export default async function ServiceDetailPage(props: Props) {
               </div>
               <div>
                 <h1 className="text-4xl font-bold text-foreground mb-2">{service.name}</h1>
-                <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-normal">
+                <Badge variant="secondary" className="bg-primary/10 text-primary border border-primary/20 font-medium">
                   {service.category}
                 </Badge>
               </div>

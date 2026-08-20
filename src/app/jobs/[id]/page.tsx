@@ -28,6 +28,15 @@ export default async function JobDetailPage(props: Props) {
     notFound();
   }
 
+  const getStatusColor = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'completed': return 'bg-green-500/10 text-green-600 border border-green-500/20';
+      case 'error': return 'bg-red-500/10 text-red-600 border border-red-500/20';
+      case 'pending': return 'bg-amber-500/10 text-amber-600 border border-amber-500/20';
+      default: return 'bg-secondary text-secondary-foreground border border-border';
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 md:px-8 py-12">
       <FadeIn>
@@ -48,11 +57,11 @@ export default async function JobDetailPage(props: Props) {
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{job.title}</h1>
                 <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                  <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
+                  <Badge variant="secondary" className={getStatusColor(job.content_status)}>
                     {job.content_status}
                   </Badge>
                   {job.open_source_viable && (
-                    <Badge variant="outline" className="border-border text-foreground">
+                    <Badge variant="secondary" className="bg-blue-500/10 text-blue-600 border border-blue-500/20">
                       Open Source Viable
                     </Badge>
                   )}
