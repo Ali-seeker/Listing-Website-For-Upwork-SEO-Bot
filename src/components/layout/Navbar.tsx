@@ -1,5 +1,8 @@
 "use client";
 
+import { Space_Grotesk } from "next/font/google";
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -30,7 +33,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${spaceGrotesk.className} ${
         isScrolled
           ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
           : "bg-transparent"

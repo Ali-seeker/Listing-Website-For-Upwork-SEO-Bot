@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Space_Grotesk } from "next/font/google";
+
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 import { ArrowRight, Search, Zap, Shield, CheckCircle2, Code, Sparkles, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProducts, getServices, getBlogs, getJobs } from "@/lib/data";
@@ -44,13 +47,13 @@ export default async function HomePage() {
               </span>
               Over 1,000+ curated tools inside
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-extrabold tracking-tight text-foreground mb-6 max-w-5xl mx-auto leading-[1.1] relative z-10">
+            <h1 className={`text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground mb-6 max-w-5xl mx-auto leading-[1.1] relative z-10 ${spaceGrotesk.className}`}>
               Discover Products, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Services & Jobs</span>
             </h1>
           </FadeIn>
           
           <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed ${spaceGrotesk.className}`}>
               The premium technology marketplace connecting you with curated software tools, expert professionals, and career opportunities.
             </p>
           </FadeIn>
