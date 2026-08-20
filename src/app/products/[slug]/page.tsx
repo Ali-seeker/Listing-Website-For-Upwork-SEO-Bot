@@ -31,7 +31,7 @@ export default async function ProductDetailPage(props: Props) {
   return (
     <div className="container mx-auto px-4 md:px-8 py-12">
       <FadeIn>
-        <Link href="/products" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-indigo-400 mb-8 transition-colors">
+        <Link href="/products" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Products
         </Link>
@@ -42,36 +42,36 @@ export default async function ProductDetailPage(props: Props) {
         <div className="lg:col-span-2">
           <FadeIn delay={0.1}>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20">
+              <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-muted-foreground border border-border">
                 <Package className="w-8 h-8" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-white mb-2">{product.name}</h1>
-                <Badge variant="secondary" className="bg-slate-800 text-slate-300">
+                <h1 className="text-4xl font-bold text-foreground mb-2">{product.name}</h1>
+                <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-normal">
                   {product.category}
                 </Badge>
               </div>
             </div>
             
-            <p className="text-xl text-slate-300 font-medium mb-8">
+            <p className="text-xl text-muted-foreground font-medium mb-8">
               {product.shortDesc}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="prose prose-invert max-w-none prose-p:text-slate-400 prose-headings:text-slate-200">
-              <h2 className="text-2xl font-semibold mb-4 mt-8 text-white border-b border-slate-800 pb-2">Overview</h2>
+            <div className="prose prose-invert max-w-none prose-p:text-muted-foreground prose-headings:text-foreground">
+              <h2 className="text-2xl font-semibold mb-4 mt-8 text-foreground border-b border-border pb-2">Overview</h2>
               <p className="mb-6 leading-relaxed">
                 {product.description}
               </p>
 
-              <h2 className="text-2xl font-semibold mb-4 mt-8 text-white border-b border-slate-800 pb-2">The Problem</h2>
-              <p className="mb-6 leading-relaxed bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+              <h2 className="text-2xl font-semibold mb-4 mt-8 text-foreground border-b border-border pb-2">The Problem</h2>
+              <p className="mb-6 leading-relaxed bg-muted/50 p-6 rounded-xl border border-border">
                 {product.problem}
               </p>
 
-              <h2 className="text-2xl font-semibold mb-4 mt-8 text-white border-b border-slate-800 pb-2">The Solution</h2>
-              <p className="mb-6 leading-relaxed bg-indigo-950/20 p-6 rounded-xl border border-indigo-500/20">
+              <h2 className="text-2xl font-semibold mb-4 mt-8 text-foreground border-b border-border pb-2">The Solution</h2>
+              <p className="mb-6 leading-relaxed bg-primary/5 p-6 rounded-xl border border-primary/20">
                 {product.solution}
               </p>
             </div>
@@ -83,27 +83,27 @@ export default async function ProductDetailPage(props: Props) {
           <FadeIn delay={0.3}>
             <div className="sticky top-24 space-y-6">
               {/* Action Card */}
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
-                <h3 className="text-lg font-semibold text-white mb-2">Get Started</h3>
-                <p className="text-sm text-slate-400 mb-6">Start using {product.name} today and transform your workflow.</p>
-                <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg h-12 mb-3">
+              <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-foreground mb-2">Get Started</h3>
+                <p className="text-sm text-muted-foreground mb-6">Start using {product.name} today and transform your workflow.</p>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg h-12 mb-3">
                   Try it now
                 </Button>
-                <Button variant="outline" className="w-full border-slate-700 hover:bg-slate-800 text-slate-200 rounded-lg h-12">
+                <Button variant="outline" className="w-full border-border hover:bg-muted text-foreground rounded-lg h-12">
                   View Documentation
                 </Button>
               </div>
 
               {/* Value Proposition */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
-                <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Value Proposition</h3>
-                <p className="text-sm text-slate-400 mb-6">{product.valueProp}</p>
+              <div className="bg-card border border-border rounded-2xl p-6">
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Value Proposition</h3>
+                <p className="text-sm text-muted-foreground mb-6">{product.valueProp}</p>
                 
-                <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Key Features</h3>
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Key Features</h3>
                 <ul className="space-y-3">
                   {product.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-slate-400">
-                      <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />
+                    <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -111,18 +111,18 @@ export default async function ProductDetailPage(props: Props) {
               </div>
 
               {/* Target Customer & Tech */}
-              <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
-                <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-2">Ideal For</h3>
-                <p className="text-sm text-slate-400 mb-6">{product.targetCustomer}</p>
+              <div className="bg-card border border-border rounded-2xl p-6">
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-2">Ideal For</h3>
+                <p className="text-sm text-muted-foreground mb-6">{product.targetCustomer}</p>
 
                 {product.technologies.length > 0 && (
                   <>
-                    <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
                       <Code className="w-4 h-4" /> Built With
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {product.technologies.map(tech => (
-                        <Badge key={tech} variant="secondary" className="bg-slate-800 text-slate-300 hover:bg-slate-700">
+                        <Badge key={tech} variant="secondary" className="bg-secondary text-secondary-foreground hover:bg-secondary/80">
                           {tech}
                         </Badge>
                       ))}

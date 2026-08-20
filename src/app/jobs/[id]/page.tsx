@@ -31,7 +31,7 @@ export default async function JobDetailPage(props: Props) {
   return (
     <div className="container mx-auto px-4 md:px-8 py-12">
       <FadeIn>
-        <Link href="/jobs" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-emerald-400 mb-8 transition-colors">
+        <Link href="/jobs" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Jobs
         </Link>
@@ -42,17 +42,17 @@ export default async function JobDetailPage(props: Props) {
         <div className="lg:col-span-2">
           <FadeIn delay={0.1}>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
+              <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-muted-foreground border border-border">
                 <Briefcase className="w-8 h-8" />
               </div>
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{job.title}</h1>
-                <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
-                  <Badge variant="secondary" className="bg-slate-800 text-slate-300">
+                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{job.title}</h1>
+                <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                  <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
                     {job.content_status}
                   </Badge>
                   {job.open_source_viable && (
-                    <Badge variant="secondary" className="bg-emerald-900/30 text-emerald-400 border-emerald-800">
+                    <Badge variant="outline" className="border-border text-foreground">
                       Open Source Viable
                     </Badge>
                   )}
@@ -69,9 +69,9 @@ export default async function JobDetailPage(props: Props) {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 mt-8">
-              <h2 className="text-xl font-semibold mb-6 text-white">Job Description</h2>
-              <div className="prose prose-invert max-w-none prose-p:text-slate-300 whitespace-pre-wrap">
+            <div className="bg-card border border-border rounded-2xl p-8 mt-8">
+              <h2 className="text-xl font-semibold mb-6 text-foreground">Job Description</h2>
+              <div className="prose prose-invert max-w-none prose-p:text-muted-foreground whitespace-pre-wrap">
                 {job.description}
               </div>
             </div>
@@ -83,14 +83,14 @@ export default async function JobDetailPage(props: Props) {
           <FadeIn delay={0.3}>
             <div className="sticky top-24 space-y-6">
               {/* Action Card */}
-              <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-2xl p-6 shadow-xl">
-                <h3 className="text-lg font-semibold text-white mb-2">Apply Now</h3>
-                <p className="text-sm text-emerald-400/80 mb-6">Take the next step in your career.</p>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg h-12 mb-3">
+              <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-foreground mb-2">Apply Now</h3>
+                <p className="text-sm text-muted-foreground mb-6">Take the next step in your career.</p>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg h-12 mb-3">
                   Submit Application
                 </Button>
                 {job.campaign_id && (
-                  <p className="text-xs text-center text-slate-500 mt-4">
+                  <p className="text-xs text-center text-muted-foreground mt-4">
                     Campaign: {job.campaign_id}
                   </p>
                 )}

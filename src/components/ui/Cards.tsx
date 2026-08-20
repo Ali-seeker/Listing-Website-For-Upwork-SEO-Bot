@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Package, Briefcase, FileText, Settings, Calendar, ExternalLink } from "lucide-react";
+import { ArrowRight, Package, Briefcase, Settings, Calendar } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -15,27 +15,27 @@ interface Product {
 export function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/products/${product.slug}`} className="group block h-full">
-      <Card className="h-full bg-slate-900 border-slate-800 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-indigo-500/50 group-hover:shadow-[0_8px_30px_rgb(99,102,241,0.12)]">
-        <CardHeader>
-          <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-4 text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all">
-            <Package className="w-6 h-6" />
+      <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+        <CardHeader className="pb-3">
+          <div className="flex justify-between items-start mb-2">
+             <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
+              <Package className="w-5 h-5" />
+            </div>
+            <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-normal">
+              {product.category}
+            </Badge>
           </div>
-          <div className="flex justify-between items-start gap-4">
-            <CardTitle className="text-xl text-slate-100 group-hover:text-indigo-400 transition-colors">
-              {product.name}
-            </CardTitle>
-          </div>
-          <Badge variant="secondary" className="w-fit bg-slate-800 text-slate-300 mt-2">
-            {product.category}
-          </Badge>
+          <CardTitle className="text-xl text-foreground font-semibold group-hover:text-primary transition-colors">
+            {product.name}
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <CardDescription className="text-slate-400 line-clamp-3">
+          <CardDescription className="text-muted-foreground text-sm line-clamp-3">
             {product.shortDesc}
           </CardDescription>
         </CardContent>
-        <CardFooter className="mt-auto pt-4 border-t border-slate-800/50 flex items-center text-sm font-medium text-indigo-400">
-          View Product 
+        <CardFooter className="mt-auto pt-4 border-t border-border/50 flex items-center text-sm font-medium text-primary">
+          Explore Product
           <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </CardFooter>
       </Card>
@@ -55,25 +55,27 @@ interface Service {
 export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link href={`/services/${service.slug}`} className="group block h-full">
-      <Card className="h-full bg-slate-900 border-slate-800 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-cyan-500/50 group-hover:shadow-[0_8px_30px_rgb(6,182,212,0.12)]">
-        <CardHeader>
-          <div className="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all">
-            <Settings className="w-6 h-6" />
+      <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+        <CardHeader className="pb-3">
+           <div className="flex justify-between items-start mb-2">
+             <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
+              <Settings className="w-5 h-5" />
+            </div>
+            <Badge variant="secondary" className="bg-secondary text-secondary-foreground font-normal">
+              {service.category}
+            </Badge>
           </div>
-          <CardTitle className="text-xl text-slate-100 group-hover:text-cyan-400 transition-colors">
+          <CardTitle className="text-xl text-foreground font-semibold group-hover:text-primary transition-colors">
             {service.name}
           </CardTitle>
-          <Badge variant="secondary" className="w-fit bg-slate-800 text-slate-300 mt-2">
-            {service.category}
-          </Badge>
         </CardHeader>
         <CardContent>
-          <CardDescription className="text-slate-400 line-clamp-3">
+          <CardDescription className="text-muted-foreground text-sm line-clamp-3">
             {service.shortDesc}
           </CardDescription>
         </CardContent>
-        <CardFooter className="mt-auto pt-4 border-t border-slate-800/50 flex items-center text-sm font-medium text-cyan-400">
-          Explore Service
+        <CardFooter className="mt-auto pt-4 border-t border-border/50 flex items-center text-sm font-medium text-primary">
+          View Service
           <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </CardFooter>
       </Card>
@@ -94,27 +96,27 @@ interface Blog {
 export function BlogCard({ blog }: { blog: Blog }) {
   return (
     <Link href={`/blog/${blog.slug}`} className="group block h-full">
-      <Card className="h-full bg-slate-900 border-slate-800 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-purple-500/50 group-hover:shadow-[0_8px_30px_rgb(168,85,247,0.12)]">
-        <CardHeader>
-          <div className="flex items-center justify-between mb-2">
-            <Badge variant="outline" className="text-purple-400 border-purple-500/30">
+      <Card className="h-full bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between mb-3">
+            <Badge variant="outline" className="text-muted-foreground font-normal border-border">
               {blog.category}
             </Badge>
-            <div className="flex items-center text-xs text-slate-500">
+            <div className="flex items-center text-xs text-muted-foreground">
               <Calendar className="w-3 h-3 mr-1" />
               {new Date(blog.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
             </div>
           </div>
-          <CardTitle className="text-xl text-slate-100 group-hover:text-purple-400 transition-colors line-clamp-2">
+          <CardTitle className="text-lg text-foreground font-semibold group-hover:text-primary transition-colors line-clamp-2 leading-tight">
             {blog.title}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <CardDescription className="text-slate-400 line-clamp-3">
+          <CardDescription className="text-muted-foreground text-sm line-clamp-3">
             {blog.excerpt}
           </CardDescription>
         </CardContent>
-        <CardFooter className="mt-auto pt-4 flex items-center text-sm font-medium text-purple-400">
+        <CardFooter className="mt-auto pt-4 flex items-center text-sm font-medium text-primary">
           Read Article
           <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </CardFooter>
@@ -137,35 +139,35 @@ interface Job {
 export function JobCard({ job }: { job: Job }) {
   return (
     <Link href={`/jobs/${job.id}`} className="group block h-full">
-      <Card className="h-full flex flex-col bg-slate-900 border-slate-800 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-emerald-500/50 group-hover:shadow-[0_8px_30px_rgb(16,185,129,0.12)]">
-        <CardHeader>
-          <div className="flex justify-between items-start mb-2">
-            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+      <Card className="h-full flex flex-col bg-card border-border hover:border-primary/30 transition-all duration-300 hover:shadow-sm">
+        <CardHeader className="pb-3">
+          <div className="flex justify-between items-start mb-3">
+            <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
               <Briefcase className="w-5 h-5" />
             </div>
             {job.campaign_id && (
-              <Badge variant="outline" className="text-xs text-slate-400 border-slate-700 bg-slate-800/50">
+              <Badge variant="outline" className="text-xs font-normal text-muted-foreground border-border bg-muted/50">
                 {job.campaign_id}
               </Badge>
             )}
           </div>
-          <CardTitle className="text-lg text-slate-100 group-hover:text-emerald-400 transition-colors">
+          <CardTitle className="text-lg text-foreground font-semibold group-hover:text-primary transition-colors">
             {job.title}
           </CardTitle>
-          <div className="text-xs text-slate-500 flex items-center gap-2 mt-2">
+          <div className="text-xs text-muted-foreground flex items-center gap-2 mt-2">
              <span>{job.content_status}</span>
              <span>•</span>
              <span>{new Date(job.created_at).toLocaleDateString()}</span>
           </div>
         </CardHeader>
         <CardContent className="flex-grow">
-          <CardDescription className="text-slate-400 line-clamp-3 mb-4">
+          <CardDescription className="text-muted-foreground text-sm line-clamp-2 mb-2">
             {job.description.length > 120 ? `${job.description.slice(0, 120)}...` : job.description}
           </CardDescription>
         </CardContent>
-        <CardFooter className="mt-auto pt-4 border-t border-slate-800/50 flex items-center text-sm font-medium text-emerald-400">
-          View Details
-          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <CardFooter className="mt-auto pt-4 border-t border-border/50 flex items-center justify-between text-sm font-medium text-primary">
+          <span>View Details</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </CardFooter>
       </Card>
     </Link>

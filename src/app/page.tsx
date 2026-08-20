@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { ArrowRight, Search, Zap, Shield, Globe } from "lucide-react";
+import { ArrowRight, Search, Zap, Shield, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProducts, getServices, getBlogs, getJobs } from "@/lib/data";
 import { ProductCard, ServiceCard, BlogCard, JobCard } from "@/components/ui/Cards";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations/MotionWrapper";
+import { HeroSearch } from "@/components/ui/HeroSearch";
 
 export default async function HomePage() {
   const [products, services, blogs, jobs] = await Promise.all([
@@ -16,39 +17,44 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col gap-24 pb-20">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
+      <section className="relative pt-32 pb-24 overflow-hidden border-b border-border">
+        {/* Dynamic Premium Background */}
+        <div className="absolute inset-0 bg-background -z-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,_var(--tw-gradient-stops))] from-indigo-900/20 via-background to-background -z-10" />
+        <div className="absolute top-0 inset-x-0 h-px w-full bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+        <div className="absolute -top-48 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none -z-10" />
+
         <div className="container mx-auto px-4 md:px-8 text-center relative z-10">
-          <FadeIn>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-8">
-              <Zap className="w-4 h-4" />
-              <span>Module 2: Independent Listing Hub</span>
-            </div>
-          </FadeIn>
-          
           <FadeIn delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
-              Discover Smarter <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
-                Solutions & Services
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-8 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
               </span>
+              Over 1,000+ curated tools inside
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground mb-6 max-w-5xl mx-auto leading-[1.1]">
+              Discover Products, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Services & Jobs</span>
             </h1>
           </FadeIn>
           
           <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-              Browse top-tier software products, professional services, informative articles, and the latest job opportunities in one unified platform.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+              The premium technology marketplace connecting you with curated software tools, expert professionals, and career opportunities.
             </p>
           </FadeIn>
           
           <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/products" className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8 h-12 w-full sm:w-auto font-medium transition-colors shadow-sm">
-                Explore Products
-              </Link>
-              <Link href="/jobs" className="inline-flex items-center justify-center border border-slate-700 hover:bg-slate-800 text-slate-200 rounded-full px-8 h-12 w-full sm:w-auto font-medium transition-colors">
-                <Search className="w-4 h-4 mr-2" />
-                Find Jobs
-              </Link>
+            <div className="max-w-2xl mx-auto flex flex-col gap-8">
+              <div className="bg-card/40 backdrop-blur-xl border border-border rounded-2xl p-2 shadow-2xl shadow-indigo-900/10">
+                <HeroSearch />
+              </div>
+              
+              <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground">
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Curated software</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Verified experts</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Top employers</span>
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -56,65 +62,65 @@ export default async function HomePage() {
 
       {/* Featured Products */}
       <section className="container mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-end mb-8">
+        <div className="flex justify-between items-end mb-10 border-b border-border pb-4">
           <div>
-            <h2 className="text-3xl font-bold text-slate-100 mb-2">Featured Products</h2>
-            <p className="text-slate-400">Discover software tools and applications to boost productivity.</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-2">Featured Products</h2>
+            <p className="text-muted-foreground text-sm md:text-base">Discover powerful software tools and applications.</p>
           </div>
-          <Link href="/products" className="hidden sm:flex items-center text-indigo-400 hover:text-indigo-300 font-medium">
-            View all <ArrowRight className="ml-1 w-4 h-4" />
+          <Link href="/products" className="hidden sm:flex items-center text-primary hover:text-primary/80 font-medium text-sm transition-all hover:translate-x-1">
+            View all products <ArrowRight className="ml-1 w-4 h-4" />
           </Link>
         </div>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map(product => (
-            <StaggerItem key={product.id}>
+            <StaggerItem key={product.id} className="transition-transform duration-300 hover:-translate-y-1">
               <ProductCard product={product} />
             </StaggerItem>
           ))}
         </StaggerContainer>
-        <div className="mt-6 sm:hidden">
+        <div className="mt-8 sm:hidden">
           <Link href="/products" className="w-full">
-            <Button variant="outline" className="w-full border-slate-800">
+            <Button variant="outline" className="w-full">
               View all products
             </Button>
           </Link>
         </div>
       </section>
 
-      {/* Featured Services */}
+      {/* Professional Services */}
       <section className="container mx-auto px-4 md:px-8">
-        <div className="flex justify-between items-end mb-8">
+        <div className="flex justify-between items-end mb-10 border-b border-border pb-4">
           <div>
-            <h2 className="text-3xl font-bold text-slate-100 mb-2">Professional Services</h2>
-            <p className="text-slate-400">Expert consulting, development, and support services.</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-2">Professional Services</h2>
+            <p className="text-muted-foreground text-sm md:text-base">Expert consulting, development, and support.</p>
           </div>
-          <Link href="/services" className="hidden sm:flex items-center text-cyan-400 hover:text-cyan-300 font-medium">
-            View all <ArrowRight className="ml-1 w-4 h-4" />
+          <Link href="/services" className="hidden sm:flex items-center text-primary hover:text-primary/80 font-medium text-sm transition-all hover:translate-x-1">
+            View all services <ArrowRight className="ml-1 w-4 h-4" />
           </Link>
         </div>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(service => (
-            <StaggerItem key={service.id}>
+            <StaggerItem key={service.id} className="transition-transform duration-300 hover:-translate-y-1">
               <ServiceCard service={service} />
             </StaggerItem>
           ))}
         </StaggerContainer>
       </section>
 
-      {/* Latest Jobs & Blog Grid */}
+      {/* Jobs & Insights Grid */}
       <section className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Latest Jobs */}
           <div>
-            <div className="flex justify-between items-end mb-8">
-              <h2 className="text-2xl font-bold text-slate-100">Latest Jobs</h2>
-              <Link href="/jobs" className="flex items-center text-emerald-400 hover:text-emerald-300 text-sm font-medium">
+            <div className="flex justify-between items-end mb-8 border-b border-border pb-4">
+              <h2 className="text-2xl font-semibold text-foreground">Latest Opportunities</h2>
+              <Link href="/jobs" className="flex items-center text-primary hover:text-primary/80 text-sm font-medium transition-all hover:translate-x-1">
                 All jobs <ArrowRight className="ml-1 w-4 h-4" />
               </Link>
             </div>
             <StaggerContainer className="flex flex-col gap-4">
               {jobs.map(job => (
-                <StaggerItem key={job.id}>
+                <StaggerItem key={job.id} className="transition-transform duration-300 hover:-translate-x-1">
                   <JobCard job={job} />
                 </StaggerItem>
               ))}
@@ -123,49 +129,19 @@ export default async function HomePage() {
 
           {/* Latest Articles */}
           <div>
-            <div className="flex justify-between items-end mb-8">
-              <h2 className="text-2xl font-bold text-slate-100">Insights & News</h2>
-              <Link href="/blog" className="flex items-center text-purple-400 hover:text-purple-300 text-sm font-medium">
+            <div className="flex justify-between items-end mb-8 border-b border-border pb-4">
+              <h2 className="text-2xl font-semibold text-foreground">Insights & Editorial</h2>
+              <Link href="/blog" className="flex items-center text-primary hover:text-primary/80 text-sm font-medium transition-all hover:translate-x-1">
                 Read more <ArrowRight className="ml-1 w-4 h-4" />
               </Link>
             </div>
             <StaggerContainer className="flex flex-col gap-4">
               {blogs.map(blog => (
-                <StaggerItem key={blog.id}>
+                <StaggerItem key={blog.id} className="transition-transform duration-300 hover:-translate-x-1">
                   <BlogCard blog={blog} />
                 </StaggerItem>
               ))}
             </StaggerContainer>
-          </div>
-        </div>
-      </section>
-
-      {/* Value Props */}
-      <section className="container mx-auto px-4 md:px-8 mt-12">
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl"></div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
-                <Globe className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Unified Platform</h3>
-              <p className="text-slate-400 text-sm">Access products, services, and opportunities all from one seamless interface.</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4">
-                <Shield className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Secure & Reliable</h3>
-              <p className="text-slate-400 text-sm">Built on modern, scalable, and independent architecture for maximum stability.</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
-                <Zap className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Fast Performance</h3>
-              <p className="text-slate-400 text-sm">Optimized loading speeds and subtle animations that enhance the user experience.</p>
-            </div>
           </div>
         </div>
       </section>

@@ -29,7 +29,7 @@ export default async function BlogDetailPage(props: Props) {
   return (
     <article className="container mx-auto px-4 md:px-8 py-12 max-w-4xl">
       <FadeIn>
-        <Link href="/blog" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-purple-400 mb-8 transition-colors">
+        <Link href="/blog" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary mb-8 transition-colors">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Blog
         </Link>
@@ -38,14 +38,14 @@ export default async function BlogDetailPage(props: Props) {
       <FadeIn delay={0.1}>
         <header className="mb-12 text-center">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <span className="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-purple-500/20">
+            <span className="px-3 py-1 bg-muted text-foreground text-xs font-semibold uppercase tracking-wider rounded-full border border-border">
               {blog.category}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-foreground mb-6 leading-tight">
             {blog.title}
           </h1>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4" />
               <span>{blog.author}</span>
@@ -59,8 +59,8 @@ export default async function BlogDetailPage(props: Props) {
       </FadeIn>
 
       <FadeIn delay={0.2}>
-        <div className="prose prose-invert prose-lg max-w-none prose-p:text-slate-300 prose-headings:text-slate-100 prose-a:text-purple-400 hover:prose-a:text-purple-300">
-          <p className="text-xl text-slate-400 italic border-l-4 border-purple-500/50 pl-4 mb-10">
+        <div className="prose prose-invert prose-lg max-w-none prose-p:text-muted-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80">
+          <p className="text-xl text-muted-foreground italic border-l-4 border-primary/50 pl-4 mb-10">
             {blog.excerpt}
           </p>
           
@@ -70,10 +70,10 @@ export default async function BlogDetailPage(props: Props) {
           />
         </div>
 
-        <div className="mt-16 pt-8 border-t border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-slate-400">
+        <div className="mt-16 pt-8 border-t border-border flex items-center justify-between">
+          <div className="flex items-center gap-2 text-muted-foreground">
             <Tag className="w-4 h-4" />
-            <span className="text-sm">Posted in <span className="text-slate-200">{blog.category}</span></span>
+            <span className="text-sm">Posted in <span className="text-foreground">{blog.category}</span></span>
           </div>
         </div>
       </FadeIn>

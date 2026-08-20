@@ -3,22 +3,33 @@ import { ProductCard } from "@/components/ui/Cards";
 import { EmptyState } from "@/components/ui/States";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations/MotionWrapper";
 
+import { SearchBar } from "@/components/ui/SearchBar";
+
 export const metadata = {
   title: "Products | ListingHub",
   description: "Browse top-tier software products and tools.",
 };
 
-export default async function ProductsPage() {
-  const products = await getProducts();
+type Props = {
+  searchParams: Promise<{ query?: string }>;
+};
+
+export default async function ProductsPage(props: Props) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
+  const products = await getProducts(query);
 
   return (
     <div className="container mx-auto px-4 md:px-8 py-12">
       <FadeIn>
-        <div className="mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Products</h1>
-          <p className="text-slate-400 text-lg max-w-2xl">
-            Explore our collection of innovative software solutions designed to solve complex problems and boost your team's productivity.
-          </p>
+        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Products</h1>
+            <p className="text-muted-foreground text-lg">
+              Explore our collection of innovative software solutions designed to solve complex problems and boost your team's productivity.
+            </p>
+          </div>
+          <SearchBar placeholder="Search products..." />
         </div>
       </FadeIn>
 
