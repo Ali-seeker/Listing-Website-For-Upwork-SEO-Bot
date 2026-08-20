@@ -51,7 +51,7 @@ export default async function BlogPage(props: Props) {
                        {blogs[0].category}
                      </span>
                      <span className="text-muted-foreground text-sm">
-                       {new Date(blogs[0].createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                       {new Date(blogs[0].createdAt).toLocaleDateString("en-US", { timeZone: "Asia/Karachi", month: "long", day: "numeric", year: "numeric" })}
                      </span>
                    </div>
                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 hover:text-primary transition-colors">

@@ -35,9 +35,7 @@ export async function syncJobs(client: Client) {
     const res = await client.query(
       `SELECT id, title, description, campaign_id, open_source_viable, content_status, created_at 
        FROM ${tableName} 
-       WHERE created_at > $1 
-       ORDER BY created_at ASC, id ASC`,
-      [lastSyncedAt]
+       ORDER BY created_at ASC, id ASC`
     );
     
     const rows = res.rows;

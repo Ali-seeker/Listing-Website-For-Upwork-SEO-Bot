@@ -69,7 +69,7 @@ export default async function JobDetailPage(props: Props) {
                     <MapPin className="w-4 h-4" /> Remote
                   </span>
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" /> Posted {new Date(job.created_at).toLocaleDateString()}
+                    <Calendar className="w-4 h-4" /> Posted {new Date(job.created_at).toLocaleDateString("en-US", { timeZone: "Asia/Karachi", month: "short", day: "numeric", year: "numeric" })}
                   </span>
                 </div>
               </div>

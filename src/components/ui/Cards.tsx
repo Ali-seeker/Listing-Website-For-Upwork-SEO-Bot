@@ -104,7 +104,7 @@ export function BlogCard({ blog }: { blog: Blog }) {
             </Badge>
             <div className="flex items-center text-xs text-muted-foreground">
               <Calendar className="w-3 h-3 mr-1" />
-              {new Date(blog.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+              {new Date(blog.createdAt).toLocaleDateString("en-US", { timeZone: "Asia/Karachi", month: "short", day: "numeric", year: "numeric" })}
             </div>
           </div>
           <CardTitle className="text-lg text-foreground font-semibold group-hover:text-primary transition-colors line-clamp-2 leading-tight">
@@ -168,7 +168,7 @@ export function JobCard({ job }: { job: Job }) {
                {job.content_status}
              </Badge>
              <span>•</span>
-             <span>{new Date(job.created_at).toLocaleDateString()}</span>
+             <span>{new Date(job.created_at).toLocaleDateString("en-US", { timeZone: "Asia/Karachi", month: "short", day: "numeric", year: "numeric" })}</span>
           </div>
         </CardHeader>
         <CardContent className="flex-grow">

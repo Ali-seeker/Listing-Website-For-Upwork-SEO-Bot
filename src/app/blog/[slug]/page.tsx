@@ -52,7 +52,7 @@ export default async function BlogDetailPage(props: Props) {
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              <span>{new Date(blog.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+              <span>{new Date(blog.createdAt).toLocaleDateString("en-US", { timeZone: "Asia/Karachi", month: "long", day: "numeric", year: "numeric" })}</span>
             </div>
           </div>
         </header>
