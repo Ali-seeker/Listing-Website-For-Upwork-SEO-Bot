@@ -46,7 +46,7 @@ export async function syncJobs(client: Client) {
       return { table: destinationTable, fetched: 0, synced: 0, status: 'SUCCESS' };
     }
     
-    let maxTimestamp = lastSyncedAt;
+    const currentSyncTime = new Date();
     
     // Upsert records
     console.log(`[UPSERT] Syncing to Module 2...`);
@@ -72,16 +72,13 @@ export async function syncJobs(client: Client) {
         }
       });
       rowsSynced++;
-      if (new Date(row.created_at) > maxTimestamp) {
-        maxTimestamp = new Date(row.created_at);
-      }
     }
     
     // Update watermark
     await prisma.syncWatermark.upsert({
       where: { table_name: tableName },
-      update: { last_synced_at: maxTimestamp },
-      create: { table_name: tableName, last_synced_at: maxTimestamp }
+      update: { last_synced_at: currentSyncTime },
+      create: { table_name: tableName, last_synced_at: currentSyncTime }
     });
     
     // Log audit
