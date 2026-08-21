@@ -8,6 +8,8 @@ import { getProducts, getServices, getBlogs, getJobs } from "@/lib/data";
 import { ProductCard, ServiceCard, BlogCard, JobCard } from "@/components/ui/Cards";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations/MotionWrapper";
 import { HeroSearch } from "@/components/ui/HeroSearch";
+import { HeroListingsRail } from "@/components/ui/HeroListingsRail";
+import { HeroStats } from "@/components/ui/HeroStats";
 
 export default async function HomePage() {
   const [products, services, blogs, jobs] = await Promise.all([
@@ -27,50 +29,49 @@ export default async function HomePage() {
         <div className="absolute top-0 inset-x-0 h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         <div className="absolute -top-48 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
-        <div className="container mx-auto px-4 md:px-8 text-center relative z-10">
-          {/* Floating Icons */}
-          <div className="hidden lg:flex items-center justify-center absolute top-10 left-10 w-16 h-16 rounded-2xl bg-card/60 backdrop-blur-md border border-border/50 shadow-xl animate-[bounce_4s_infinite] text-primary/80 z-0">
-            <Code className="w-8 h-8" />
-          </div>
-          <div className="hidden lg:flex items-center justify-center absolute top-20 right-10 w-16 h-16 rounded-2xl bg-card/60 backdrop-blur-md border border-border/50 shadow-xl animate-[bounce_5s_infinite] text-cyan-500/80 z-0">
-            <Sparkles className="w-8 h-8" />
-          </div>
-          <div className="hidden lg:flex items-center justify-center absolute bottom-24 left-24 w-12 h-12 rounded-xl bg-card/60 backdrop-blur-md border border-border/50 shadow-xl animate-[bounce_6s_infinite] text-indigo-500/80 z-0">
-            <Briefcase className="w-6 h-6" />
-          </div>
-
-          <FadeIn delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 dark:text-indigo-400 text-sm font-medium mb-8 backdrop-blur-sm relative z-10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-              </span>
-              Over 1,000+ curated tools inside
-            </div>
-            <h1 className={`text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-foreground mb-6 max-w-5xl mx-auto leading-[1.1] relative z-10 ${spaceGrotesk.className}`}>
-              Discover Products, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Services & Jobs</span>
-            </h1>
-          </FadeIn>
-          
-          <FadeIn delay={0.2}>
-            <p className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed ${spaceGrotesk.className}`}>
-              The premium technology marketplace connecting you with curated software tools, expert professionals, and career opportunities.
-            </p>
-          </FadeIn>
-          
-          <FadeIn delay={0.3}>
-            <div className="max-w-2xl mx-auto flex flex-col gap-8">
-              <div className="bg-card/40 backdrop-blur-xl border border-border rounded-2xl p-2 shadow-2xl shadow-indigo-900/10">
-                <HeroSearch />
-              </div>
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            {/* Left Content */}
+            <div className="flex flex-col text-center lg:text-left">
+              <FadeIn delay={0.1}>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-border/80 dark:border-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-8 backdrop-blur-sm shadow-sm relative z-10 mx-auto lg:mx-0">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                  </span>
+                  Over 1,000+ curated tools inside
+                </div>
+                <h1 className={`text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 max-w-2xl mx-auto lg:mx-0 leading-[1.1] relative z-10 ${spaceGrotesk.className}`}>
+                  Discover Products, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Services & Jobs</span>
+                </h1>
+              </FadeIn>
               
-              <div className="flex flex-wrap justify-center items-center gap-4 mt-6">
-                <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/60 backdrop-blur-md border border-border/50 text-sm font-medium text-foreground shadow-sm hover:border-primary/30 transition-colors"><CheckCircle2 className="w-4 h-4 text-primary" /> Curated software</span>
-                <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/60 backdrop-blur-md border border-border/50 text-sm font-medium text-foreground shadow-sm hover:border-primary/30 transition-colors"><CheckCircle2 className="w-4 h-4 text-primary" /> Verified experts</span>
-                <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/60 backdrop-blur-md border border-border/50 text-sm font-medium text-foreground shadow-sm hover:border-primary/30 transition-colors"><CheckCircle2 className="w-4 h-4 text-primary" /> Top employers</span>
-              </div>
+              <FadeIn delay={0.2}>
+                <p className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed ${spaceGrotesk.className}`}>
+                  The premium technology marketplace connecting you with curated software tools, expert professionals, and career opportunities.
+                </p>
+              </FadeIn>
+              
+              <FadeIn delay={0.3}>
+                <div className="max-w-2xl mx-auto lg:mx-0">
+                  <div className="bg-card/40 backdrop-blur-xl border border-border/80 dark:border-border rounded-2xl p-2 shadow-xl shadow-indigo-900/5 text-left relative z-20">
+                    <HeroSearch />
+                  </div>
+                  
+                  <HeroStats />
+                </div>
+              </FadeIn>
             </div>
-          </FadeIn>
+
+            {/* Right Content - Hero Listings Rail */}
+            <div className="relative lg:pl-10 w-full h-full flex items-center justify-center">
+              <FadeIn delay={0.4} className="w-full">
+                <HeroListingsRail />
+              </FadeIn>
+            </div>
+            
+          </div>
         </div>
       </section>
 

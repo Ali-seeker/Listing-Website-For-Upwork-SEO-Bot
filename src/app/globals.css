@@ -98,3 +98,8 @@
     @apply font-sans;
   }
 }
+
+@keyframes scroll-vertical { 
+  from { transform: translateY(0); } 
+  to { transform: translateY(-50%); } 
+}
